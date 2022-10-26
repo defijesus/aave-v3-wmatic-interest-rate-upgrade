@@ -13,6 +13,3 @@
 [submodule "lib/governance-crosschain-bridges"]
 	path = lib/governance-crosschain-bridges
 	url = https://github.com/aave/governance-crosschain-bridges
-[submodule "lib/aave-v3-core.git"]
-	path = lib/aave-v3-core.git
-	url = https://github.com/aave/aave-v3-core.git

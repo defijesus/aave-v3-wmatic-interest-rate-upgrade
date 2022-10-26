@@ -10,6 +10,10 @@ build  :; forge build --sizes
 
 test   :; forge test -vvv
 
+download :; ETHERSCAN_API_KEY=${POLYGONSCAN_API_KEY} cast etherscan-source -d src/etherscan/0x03733F4E008d36f2e37F0080fF1c8DF756622E6F 0x03733F4E008d36f2e37F0080fF1c8DF756622E6F --chain polygon
+
+flatten :; forge flatten -o src/InterestRateStrategy.sol src/etherscan/0x03733F4E008d36f2e37F0080fF1c8DF756622E6F/DefaultReserveInterestRateStrategy/@aave/core-v3/contracts/protocol/pool/DefaultReserveInterestRateStrategy.sol
+
 # Deploy forwarders
 deploy-optimism-forwarder-ledger :;  forge script script/DeployOptimismForwarder.s.sol:DeployOptimismForwarder --rpc-url ${RPC_URL} --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify --etherscan-api-key ${ETHERSCAN_API_KEY} -vvvv
 
