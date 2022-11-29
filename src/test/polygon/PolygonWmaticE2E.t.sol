@@ -2,13 +2,10 @@
 pragma solidity ^0.8.0;
 
 import 'forge-std/Test.sol';
-import {AaveV3Polygon} from 'aave-address-book/AaveAddressBook.sol';
 import {GovHelpers} from 'aave-helpers/GovHelpers.sol';
-import {ProtocolV3TestBase, ReserveConfig, ReserveTokens, IERC20, InterestStrategyValues, IInterestRateStrategy} from 'aave-helpers/ProtocolV3TestBase.sol';
+import {ProtocolV3TestBase, InterestStrategyValues, IInterestRateStrategy} from 'aave-helpers/ProtocolV3TestBase.sol';
 import {BridgeExecutorHelpers} from 'aave-helpers/BridgeExecutorHelpers.sol';
-import {AaveGovernanceV2, IExecutorWithTimelock} from 'aave-address-book/AaveGovernanceV2.sol';
 import {IStateReceiver} from 'governance-crosschain-bridges/contracts/dependencies/polygon/fxportal/FxChild.sol';
-import {CrosschainForwarderPolygon} from '../../contracts/polygon/CrosschainForwarderPolygon.sol';
 import {WmaticPayload} from '../../contracts/polygon/WmaticPayload.sol';
 import {DeployL1PolygonProposal} from '../../../script/DeployL1PolygonProposal.s.sol';
 
@@ -19,8 +16,6 @@ contract PolygonWmaticE2ETest is ProtocolV3TestBase {
 
   WmaticPayload public payload;
 
-  address public constant CROSSCHAIN_FORWARDER_POLYGON =
-    0x158a6bC04F0828318821baE797f50B0A1299d45b;
   address public constant BRIDGE_ADMIN =
     0x0000000000000000000000000000000000001001;
   address public constant FX_CHILD_ADDRESS =
@@ -48,11 +43,6 @@ contract PolygonWmaticE2ETest is ProtocolV3TestBase {
   function testProposalE2E() public {
     
     vm.selectFork(polygonFork);
-
-    // we get all configs to later on check that payload only changes FRAX
-    ReserveConfig[] memory allConfigsBefore = _getReservesConfigs(
-      AaveV3Polygon.POOL
-    );
 
     // 1. deploy l2 payload
     payload = new WmaticPayload();

@@ -1,14 +1,8 @@
-# Aave v3 cross-chain listing template
+This repo implements the following [AIP proposal](https://governance.aave.com/t/arc-aave-v3-polygon-wmatic-interest-rate-update/10290/3).
 
-This template contains an opinionated smart contract template for creating proposals to list assets on the aave polygon v3 pool.
-
-For a proposal to be executed on polygon it needs to pass mainnet governance proposal that sends an encoded payload via `sendMessageToChild(address,bytes)` on [FX_ROOT](https://etherscan.io/address/0xfe5e5D361b2ad62c541bAb87C45a0B9B018389a2#code)(mainnet) to [FX_CHILD](https://polygonscan.com/address/0x8397259c983751DAf40400790063935a11afa28a#code)(polygon). Once the state is synced to `FX_CHILD` on polygon network it will queue the payload on [POLYGON_BRIDGE_EXECUTOR](https://polygonscan.com/address/0xdc9A35B16DB4e126cFeDC41322b3a36454B1F772#code).
-
-## About
-
-To simplify the process of creating a cross chain proposal this repository contains an opinionated [CrosschainForwarderPolygon](/src/contracts/polygon/CrosschainForwarderPolygon.sol) which expects a payload address deployed on the polygon network as the only parameter. The mainnet proposal payload will then be a simple `execute()` signature with `DELEGATECALL` enabled.
-
-![visualization](/bridge-listing.png)
+```
+Llama presents a proposal to amend the wMATIC interest rate parameters on the Aave Polygon v3 Liquidity Pool.
+```
 
 ## Getting started
 
